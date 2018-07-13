@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootflat.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -71,7 +72,14 @@
             </div>
         </nav>
 
-        @yield('content')
+       <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+            @yield('content')
+            </div>
+        </div>
+       </div>
     </div>
 
     <!-- Scripts -->

@@ -24,3 +24,10 @@ Route::post('/user/register', 'UserController@register')->name('register');
 Route::post('/user/login', 'UserController@login')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// ADMIN 
+// Route::resource('college', 'CollegeController');
+
+Route::get('/admin/college', 'CollegeController@college');
+Route::get('/admin/dept', 'DeptController@dept');
+Route::get('/admin/subject', 'SubjectController@subject');

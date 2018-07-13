@@ -34,7 +34,7 @@ return [
     'connections' => [
 
         'neo4j' => [
-            'driver' => 'neo4j',
+            'driver' => 'bolt',
             'host'   => '127.0.0.1',
             'port'   => '7474',
             'username' => 'neo4j',
