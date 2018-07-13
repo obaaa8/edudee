@@ -1,0 +1,13 @@
+body {
+    background-color: #F5F7FA;
+}
+
+.navbar-default {
+    background-color: #8CC152;
+    border: 0;
+}
+
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-text {
+    color: #fff;
+}

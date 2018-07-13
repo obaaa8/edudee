@@ -12,4 +12,8 @@ class Dept extends NeoEloquent
     
     protected $label = "Dept";
     protected $fillable = ['id', 'name'];
+
+    public function subjects(){
+        return $this->hasMany('App\Subject');
+    }
 }

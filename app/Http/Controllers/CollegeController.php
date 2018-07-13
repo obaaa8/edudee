@@ -52,7 +52,7 @@ class CollegeController extends Controller
         $college = new College();
         $college->name = $request->name;
 
-        // $college->id = College::count() + 1 ;
+        $college->id = College::count() + 1 ;
         $college->save();
 
         return response()->json([

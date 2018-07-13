@@ -28,6 +28,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // ADMIN 
 // Route::resource('college', 'CollegeController');
 
-Route::get('/admin/college', 'CollegeController@college');
-Route::get('/admin/dept', 'DeptController@dept');
-Route::get('/admin/subject', 'SubjectController@subject');
+Route::get('/admin/college', 'CollegeController@college')->name('college');
+Route::get('/admin/dept', 'DeptController@dept')->name('dept');
+Route::get('/admin/subject', 'SubjectController@subject')->name('subject');

@@ -63,15 +63,15 @@
         data() {
             return {
                 depts: [],
-                colleges: [],
+                semester: null,
                 name: '',
-                college_id: null,
+                dept_id: null,
                 successAdded: false
             }
         },
         created() {
             this.getDepts();
-            this.getColleges();
+            // this.getColleges();
         },
         methods: {
             getColleges() {
@@ -89,9 +89,10 @@
                 });
             },
             store() {
-                axios.post('/api/dept', {
+                axios.post('/api/subject', {
                     name: this.name,
-                    college_id: this.college_id,
+                    semester: this.semester,
+                    dept_id: this.dept_id,
                 }).then(
                     response => {
                         if (response.data.success == true) {

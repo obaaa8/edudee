@@ -49,6 +49,7 @@ class DeptController extends Controller
     {
         $dept = new Dept();
         $dept->name = $request->name;
+        $dept->id = Dept::count() + 1;
         $dept->save();
 
         $college = College::find($request->college_id);

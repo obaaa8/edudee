@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subject;
+use App\Dept;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -12,6 +13,10 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function subject(){
+        return view('admin.subject');
+    }
     public function index()
     {
         //
@@ -35,7 +40,19 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject = new Subject();
+        $subject->name = $request->name;
+        $subject->semester = $request->semester;
+        $subject->save();
+
+        $dept = Dept::find($request->dept_id);
+
+        $relation = $dept->subjects()->save($subject);
+
+        return response()->json([
+            'success' => true,
+            'data' => $dept  ,
+        ],200);
     }
 
     /**

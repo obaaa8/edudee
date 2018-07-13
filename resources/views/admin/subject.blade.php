@@ -2,6 +2,6 @@
 
 @section('content')
 
-<dept ></dept>
+<subject ></subject>
 
 @endsection

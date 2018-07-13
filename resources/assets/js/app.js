@@ -23,6 +23,10 @@ Vue.component(
     require("./components/dept/all.vue")
 );
 
+Vue.component(
+    "subject",
+    require("./components/subject/all.vue")
+);
 const app = new Vue({
     el: "#app"
 });

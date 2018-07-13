@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
+@section('main')
 
 <!-- {{ $colleges}} -->
 <college ></college>
