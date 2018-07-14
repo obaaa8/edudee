@@ -5,9 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Vinelab\NeoEloquent\Eloquent\Model as NeoEloquent;
-
-class User extends NeoEloquent // implements \Illuminate\Contracts\Auth\Authenticatable 
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -18,7 +16,9 @@ class User extends NeoEloquent // implements \Illuminate\Contracts\Auth\Authenti
      */
     protected $label = "User";
     protected $fillable = [
-        'id', 'name', 'email', 'password',
+        'id', 'name', 'email', 'password', 'phone', 
+        'u_id', 'type', 'reg_status', 'n_id', 'dept_id', 
+        'semester', 'job_id', 'pay_statue'
     ];
 
     /**
