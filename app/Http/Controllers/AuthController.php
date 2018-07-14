@@ -16,16 +16,15 @@ class AuthController extends Controller
                     'status' => 'error',
                     'error' => 'invalid.credentials',
                     'msg' => 'Invalid Credentials.'
-                ], 400);
+                ]);
         }
         return response([
-                'status' => 'success'
-            ])
-            ->header('Authorization', $token);
+                'status' => 'success',
+                'token' => $token
+            ]);
     }
     public function user(Request $request){
         $user = User::find(Auth::user()->id);
-        // dd(Auth::user());
         return response([
                 'status' => 'success',
                 'data' => $user
