@@ -31,3 +31,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/college', 'CollegeController@college')->name('college');
 Route::get('/admin/dept', 'DeptController@dept')->name('dept');
 Route::get('/admin/subject', 'SubjectController@subject')->name('subject');
+Route::get('/admin/users', 'PaymentController@users')->name('users');

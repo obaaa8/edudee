@@ -2,6 +2,6 @@
 
 @section('main')
 
-<subject ></subject>
+<users ></users>
 
 @endsection

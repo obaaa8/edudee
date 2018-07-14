@@ -2,39 +2,29 @@
 
     <div>
         <div class="row">
-            <div class="col-md-8">
+
+            <div class="col-md-12">
                 <table class="table table-striped  table-bordered ">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Registrated</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="college of colleges">
-                            <td>{{ college.id }}</td>
-                            <td>{{ college.name }}</td>
+                        <tr v-for="dept of depts">
+                            <td>{{ dept.id }}</td>
+                            <td>{{ dept.name }}</td>
+                            <td>{{ dept.name }}</td>
+                            <td>{{ dept.name }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-4">
-                <div class="alert alert-success" v-show="successAdded">
-                    College added Successfully
-                </div>
-                <form @submit.prevent="store">
-                    <div class="form-group">
-                        <input type="text" class="form-control" v-model="name">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-warning btn-block" type="submit">
-                            Add
-                        </button>
-                    </div>
-                </form>
-            </div>
-
         </div>
+
 
 
 
@@ -43,24 +33,22 @@
 </template>
 
 <script>
-    import Create from './create.vue';
     import axios from 'axios';
 
     import Vue from 'vue'
     export default {
         data() {
             return {
-                colleges: [],
+                depts: [],
+                semester: null,
                 name: '',
+                dept_id: null,
                 successAdded: false
             }
         },
-
-        components: {
-            'college-create': Create,
-        },
         created() {
-            this.getColleges();
+            this.getDepts();
+            // this.getColleges();
         },
         methods: {
             getColleges() {
@@ -70,14 +58,23 @@
                     return "Error";
                 });
             },
+            getDepts() {
+                axios.get('/api/dept').then(response => {
+                    this.depts = response.data.data;
+                }).catch(function () {
+                    return "Error";
+                });
+            },
             store() {
-                axios.post('/api/college', {
+                axios.post('/api/subject', {
                     name: this.name,
+                    semester: this.semester,
+                    dept_id: this.dept_id,
                 }).then(
                     response => {
                         if (response.data.success == true) {
                             this.successAdded = true;
-                            this.colleges.push(response.data.data);
+                            this.depts.push(response.data.data);
                         }
                         // alert(response.data.posts);
                     }).catch(
