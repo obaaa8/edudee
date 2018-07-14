@@ -32,3 +32,6 @@ Route::get('/admin/college', 'CollegeController@college')->name('college');
 Route::get('/admin/dept', 'DeptController@dept')->name('dept');
 Route::get('/admin/subject', 'SubjectController@subject')->name('subject');
 Route::get('/admin/users', 'PaymentController@users')->name('users');
+
+Route::get('/admin/teacher', 'SubjectController@teacher')->name('teacher');
+Route::get('/admin/calendar', 'CalendarController@calendar')->name('calendar');

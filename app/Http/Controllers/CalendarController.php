@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Subject;
-use App\Dept;
+use App\Calendar;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class CalendarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +13,9 @@ class SubjectController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function subject(){
-        return view('admin.subject');
+    public function calendar(){
+        return view('admin.calendar');
     }
-
-    public function teacher(){
-        return view('admin.teacher');
-    }
-
     public function index()
     {
         //
@@ -45,28 +39,16 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $subject = new Subject();
-        $subject->name = $request->name;
-        $subject->semester = $request->semester;
-        $subject->save();
-
-        $dept = Dept::find($request->dept_id);
-
-        $relation = $dept->subjects()->save($subject);
-
-        return response()->json([
-            'success' => true,
-            'data' => $subject,
-        ],200);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Subject  $subject
+     * @param  \App\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function show(Subject $subject)
+    public function show(Calendar $calendar)
     {
         //
     }
@@ -74,10 +56,10 @@ class SubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Subject  $subject
+     * @param  \App\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subject $subject)
+    public function edit(Calendar $calendar)
     {
         //
     }
@@ -86,10 +68,10 @@ class SubjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Subject  $subject
+     * @param  \App\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, Calendar $calendar)
     {
         //
     }
@@ -97,10 +79,10 @@ class SubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Subject  $subject
+     * @param  \App\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy(Calendar $calendar)
     {
         //
     }

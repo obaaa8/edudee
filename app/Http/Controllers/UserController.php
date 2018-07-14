@@ -24,13 +24,13 @@ class UserController extends Controller
             'password'=>'required'
         ]);
 
-        $user_id = User::count() + 1;
+        $user_id = 2;// User::count() + 1;
         if(User::find($user_id)){
-            // dd($data);
+        //     // dd($data);
         }
 
         $user = new User(); 
-        $user->id = $user_id;
+        $user->id = 20;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -44,8 +44,9 @@ class UserController extends Controller
         $user->reg_status = 0;
         $user->password = bcrypt($request->password);
         
+        // dd($user);
         $user->save();
 
-        return redirect()->home();
+        // return redirect()->home();
     }
 }
