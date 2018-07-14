@@ -38,7 +38,50 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="phone" class="col-md-4 control-label">Phone</label>
 
+                            <div class="col-md-6">
+                                <input id="phone" type="tel" class="form-control" name="phone" value="{{ old('phone') }}" required>
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('dept_id') ? ' has-error' : '' }}">
+                            <label for="dept_id" class="col-md-4 control-label">Department: </label>
+                            <div class="col-md-6">
+                                <select name="dept_id" id="dept_id" class="form-control" required>
+                                    @foreach($depts as $dept)
+                                <option value="{{ $dept->id }}">{{ $dept->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('dept_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dept_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('jobs') ? ' has-error' : '' }}">
+                            <label for="jobs" class="col-md-4 control-label">Father job: </label>
+                            <div class="col-md-6">
+                                <select name="jobs" id="jobs" class="form-control" required>
+                                    @foreach($jobs as $job)
+                                <option value="{{ $job->id }}">{{ $job->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('jobs'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('jobs') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
