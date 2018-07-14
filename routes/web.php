@@ -35,3 +35,5 @@ Route::get('/admin/users', 'PaymentController@users')->name('users');
 
 Route::get('/admin/teacher', 'SubjectController@teacher')->name('teacher');
 Route::get('/admin/calendar', 'CalendarController@calendar')->name('calendar');
+
+Route::get('/test', 'UserController@send_sms');

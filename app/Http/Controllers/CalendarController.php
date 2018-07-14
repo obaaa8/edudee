@@ -39,7 +39,20 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $calendar = new Calendar();
+        echo Calendar::all()->get()->count();
+        // $calendar->id = Calendar::count() + 1;
+
+        // $calendar->date = $request->date;
+        // $calendar->start = $request->start;
+        // $calendar->finish = $request->finish;
+        // $calendar->subject_id = $request->subject_id;
+        // $calendar->save();
+
+        // return response()->json([
+        //     'success' => true,
+        //     'data' => $calendar,
+        // ],200);
     }
 
     /**

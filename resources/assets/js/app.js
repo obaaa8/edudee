@@ -33,6 +33,11 @@ Vue.component(
     require("./components/users/all.vue")
 );
 
+Vue.component(
+    "calendar",
+    require("./components/calendar/all.vue")
+);
+
 const app = new Vue({
     el: "#app"
 });
