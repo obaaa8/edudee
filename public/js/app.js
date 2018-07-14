@@ -43446,7 +43446,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.colleges, function(college) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(college.id))]),
+                _c("td", [_vm._v(_vm._s(college._id))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(college.name))])
               ])
@@ -43688,6 +43688,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/dept').then(function (response) {
                 _this2.depts = response.data.data;
+                // console.log(response.data.data);
             }).catch(function () {
                 return "Error";
             });
@@ -43730,7 +43731,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.depts, function(dept) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(dept.id))]),
+                _c("td", [_vm._v(_vm._s(dept._id))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(dept.name))])
               ])
@@ -43806,7 +43807,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.colleges, function(college) {
-                    return _c("option", { domProps: { value: college.id } }, [
+                    return _c("option", { domProps: { value: college._id } }, [
                       _vm._v(_vm._s(college.name))
                     ])
                   })
@@ -44084,7 +44085,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.depts, function(dept) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(dept.id))]),
+                _c("td", [_vm._v(_vm._s(dept._id))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(dept.name))])
               ])
@@ -44158,7 +44159,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.depts, function(dept) {
-                    return _c("option", { domProps: { value: dept.id } }, [
+                    return _c("option", { domProps: { value: dept._id } }, [
                       _vm._v(_vm._s(dept.name))
                     ])
                   })

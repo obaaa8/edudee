@@ -52,7 +52,7 @@ class CollegeController extends Controller
         $college = new College();
         $college->name = $request->name;
 
-        $college->id = College::count() + 1 ;
+        $college->_id = College::count() + 1 ;
         $college->save();
 
         return response()->json([
@@ -67,9 +67,10 @@ class CollegeController extends Controller
      * @param  \App\College  $college
      * @return \Illuminate\Http\Response
      */
-    public function show(College $college)
+    public function show($college_id)
     {
-        echo $college;
+        $college = College::where('_id', $college_id)->first();
+        return response()->json($college);
     }
 
     /**

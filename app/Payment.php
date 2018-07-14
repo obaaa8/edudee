@@ -11,7 +11,7 @@ class Payment extends NeoEloquent
     protected $label = "Payment";
 
     protected $fillable = [
-        'id', 
+        '_id', 
         'amount', 
         'semester', 
         'card_id'

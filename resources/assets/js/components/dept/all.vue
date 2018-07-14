@@ -12,7 +12,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="dept of depts">
-                            <td>{{ dept.id }}</td>
+                            <td>{{ dept._id }}</td>
                             <td>{{ dept.name }}</td>
                         </tr>
                     </tbody>
@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <select v-model="college_id" class="form-control">
                             <option value="">Select College</option>
-                            <option v-for="college of colleges" :value="college.id">{{ college.name }}</option>
+                            <option v-for="college of colleges" :value="college._id">{{ college.name }}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -63,6 +63,8 @@
         created() {
             this.getDepts();
             this.getColleges();
+
+
         },
         methods: {
             getColleges() {
@@ -75,6 +77,7 @@
             getDepts() {
                 axios.get('/api/dept').then(response => {
                     this.depts = response.data.data;
+                    // console.log(response.data.data);
                 }).catch(function () {
                     return "Error";
                 });

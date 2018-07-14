@@ -24,13 +24,16 @@ class UserController extends Controller
             'password'=>'required'
         ]);
 
-        $user_id = User::count() + 1;
-        if(User::find($user_id)){
-            dd($request);
-        }
+        // $user_id = User::count() + 1;
+        // dd(User::where('_id', ));
+
+        // if(User::find($user_id)){
+        //     dd($request);
+        // }
 
         $user = new User(); 
-        $user->id = $user_id;
+        // $user->id = null;
+        $user->_id = User::count() + 1;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -73,5 +76,27 @@ class UserController extends Controller
         curl_close ($ch);
         
     }
+
+       
+    public function users(){
+        $users = User::where('type', 1)->get();
+        return response()->json([
+            'success' => true,
+            'data' => $users,
+        ],200);
+    }
+
+    public function allowPay(Request $request){
+        $user = User::find($request->user_id);
+        $user->pay_status = $request->pay_status;
+        $user->save();
+        
+        $this->send_sms($user->phone, "You are ready to pay");
+        return response()->json([
+            'success' => true,
+            'users' => User::where('type', 1)->get()
+        ],200);
+    }
+
 
 }

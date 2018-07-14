@@ -51,11 +51,12 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $subject = new Subject();
+        $subject->_id = Subject::count() + 1;
         $subject->name = $request->name;
         $subject->semester = $request->semester;
         $subject->save();
 
-        $dept = Dept::find($request->dept_id);
+        $dept = Dept::where('_id',$request->dept_id)->first();
 
         $relation = $dept->subjects()->save($subject);
 

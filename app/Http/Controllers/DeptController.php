@@ -49,10 +49,10 @@ class DeptController extends Controller
     {
         $dept = new Dept();
         $dept->name = $request->name;
-        $dept->id = Dept::count() + 1;
+        $dept->_id = Dept::count() + 1;
         $dept->save();
 
-        $college = College::find($request->college_id);
+        $college = College::where('_id', $request->college_id)->first();
 
         $relation = $college->depts()->save($dept);
 

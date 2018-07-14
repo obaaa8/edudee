@@ -13,7 +13,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="dept of depts">
-                            <td>{{ dept.id }}</td>
+                            <td>{{ dept._id }}</td>
                             <td>{{ dept.name }}</td>
                         </tr>
                     </tbody>
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <select v-model="dept_id" class="form-control">
                             <option value="">Select dept</option>
-                            <option v-for="dept of depts" :value="dept.id">{{ dept.name }}</option>
+                            <option v-for="dept of depts" :value="dept._id">{{ dept.name }}</option>
                         </select>
                     </div>
                     <div class="form-group">

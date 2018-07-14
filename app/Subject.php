@@ -10,5 +10,5 @@ class Subject extends NeoEloquent
 {
     
     protected $label = "Subject";
-    protected $fillable = ['id', 'name', 'semester'];
+    protected $fillable = ['_id', 'name', 'semester'];
 }

@@ -10,7 +10,7 @@ class Job extends NeoEloquent
 {
     
     protected $label = "Job";
-    protected $fillable = ['id', 'name', 'amount'];
+    protected $fillable = ['_id', 'name', 'amount'];
 
     public function users(){
         return $this->hasMany('App/User');

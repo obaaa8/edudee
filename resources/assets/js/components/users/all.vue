@@ -95,21 +95,21 @@
                     (response) => console.log(response)
                 );
             },
-            allowPay(state, user){
+            allowPay(state, user) {
                 console.log(state);
                 console.log(user);
                 axios.post('/api/allow_pay', {
-                    pay_status: state,
-                    user_id: user.id
-                })
-                .then((response) => {
-                    this.users = []
-                    this.users = response.data.users
-                    console.log(response.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                        pay_status: state,
+                        user_id: user.id
+                    })
+                    .then((response) => {
+                        this.users = []
+                        this.users = response.data.users
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             }
         },
 

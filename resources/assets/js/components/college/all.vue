@@ -12,7 +12,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="college of colleges">
-                            <td>{{ college.id }}</td>
+                            <td>{{ college._id }}</td>
                             <td>{{ college.name }}</td>
                         </tr>
                     </tbody>
