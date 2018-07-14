@@ -27,6 +27,12 @@ Vue.component(
     "subject",
     require("./components/subject/all.vue")
 );
+
+Vue.component(
+    "users",
+    require("./components/users/all.vue")
+);
+
 const app = new Vue({
     el: "#app"
 });

@@ -2,31 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\College;
-use App\Dept;
+use App\Payment;
 use Illuminate\Http\Request;
 
-class DeptController extends Controller
+class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dept()
-    {
-        // echo Dept::find(1325)->subjects;
-        return view('admin.dept');
+    public function users(){
+        return view('admin.user');
+        
     }
-
     public function index()
     {
-        $depts = Dept::all();
-
-        return response()->json([
-            'success' => true,
-            'data' => $depts,
-        ],200);
+        //
     }
 
     /**
@@ -47,39 +34,38 @@ class DeptController extends Controller
      */
     public function store(Request $request)
     {
-        $dept = new Dept();
-        $dept->name = $request->name;
-        $dept->id = Dept::count() + 1;
-        $dept->save();
-
-        $college = College::find($request->college_id);
-
-        $relation = $college->depts()->save($dept);
+        $payment = new Payment();
+        $payment->amount = $request->amount;
+        $payment->semester = $request->semester;
+        $payment->card_id = $request->card_id;
+        
+        $payment->save();
 
         return response()->json([
             'success' => true,
-            'data' => $dept  ,
+            'data' => $payment,
         ],200);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dept  $dept
+     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show(Dept $dept)
+    public function show(Payment $payment)
     {
-        echo $dept;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Dept  $dept
+     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dept $dept)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -88,10 +74,10 @@ class DeptController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dept  $dept
+     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dept $dept)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -99,10 +85,10 @@ class DeptController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Dept  $dept
+     * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dept $dept)
+    public function destroy(Payment $payment)
     {
         //
     }

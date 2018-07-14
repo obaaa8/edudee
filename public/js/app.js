@@ -12071,6 +12071,9 @@ Vue.component("college", __webpack_require__(39));
 Vue.component("dept", __webpack_require__(45));
 
 Vue.component("subject", __webpack_require__(48));
+
+Vue.component("users", __webpack_require__(62));
+
 var app = new Vue({
     el: "#app"
 });
@@ -44310,6 +44313,226 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(63)
+/* template */
+var __vue_template__ = __webpack_require__(64)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\users\\all.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29ae7206", Component.options)
+  } else {
+    hotAPI.reload("data-v-29ae7206", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            depts: [],
+            semester: null,
+            name: '',
+            dept_id: null,
+            successAdded: false
+        };
+    },
+    created: function created() {
+        this.getDepts();
+        // this.getColleges();
+    },
+
+    methods: {
+        getColleges: function getColleges() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/college').then(function (response) {
+                _this.colleges = response.data.data;
+            }).catch(function () {
+                return "Error";
+            });
+        },
+        getDepts: function getDepts() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/dept').then(function (response) {
+                _this2.depts = response.data.data;
+            }).catch(function () {
+                return "Error";
+            });
+        },
+        store: function store() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/subject', {
+                name: this.name,
+                semester: this.semester,
+                dept_id: this.dept_id
+            }).then(function (response) {
+                if (response.data.success == true) {
+                    _this3.successAdded = true;
+                    _this3.depts.push(response.data.data);
+                }
+                // alert(response.data.posts);
+            }).catch(function (response) {
+                return console.log(response);
+            });
+        }
+    }
+
+});
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table table-striped  table-bordered " }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.depts, function(dept) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(dept.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(dept.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(dept.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(dept.name))])
+              ])
+            })
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Registrated")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Payment")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29ae7206", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

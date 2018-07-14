@@ -51,7 +51,7 @@ class SubjectController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $subject  ,
+            'data' => $subject,
         ],200);
     }
 
