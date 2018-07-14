@@ -1,1 +1,5 @@
 ## Edudee platform
+
+```
+compposer install 
+```
