@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
+use App\User;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -34,18 +35,55 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $payment = new Payment();
-        $payment->amount = $request->amount;
-        $payment->semester = $request->semester;
-        $payment->card_id = $request->card_id;
-        
-        $payment->save();
+        $user = User::find($request->user_id);
+        dd($user);
+        if(!$user){
+            return response()->json([
+                'success' => false,
+                'msg' => 'No user data'
+            ]);
+        }
+        if($user->reg_status == 1){
+            return response()->json([
+                'success' => false,
+                'msg' => 'Already pay'
+            ]);
+        }
+        $job = $user->job;
+        if($job){
+            $amount = $request->amount;
+            $job_amount = $job->amount;
+            if($job_amount < $amount){
+                $amount = $job_amount;
+            }
 
-        return response()->json([
-            'success' => true,
-            'data' => $payment,
-        ],200);
+            $payment = new Payment();
+            $payment->amount = $amount;
+            $payment->semester = $request->semester;
+            $payment->card_id = $request->card_id;
+    
+            $payment->save();
+            // $payment->user_id = $request->user_id;
+            // $payment->dept_id = $request->dept_id;
+            $user->payments()->save($payment);
 
+            $dept = Dept::where('id', $request->dept_id)->first();
+            $user->department()->save($dept);
+            
+            if($request->amount >= $job_amount){
+                $user->reg_status = 1;
+                $user->save();
+            }
+            return response()->json([
+                'success' => true,
+                'data' => $payment,
+            ],200);
+
+        } else {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
     }
 
     /**

@@ -10,9 +10,14 @@ class Payment extends NeoEloquent
     
     protected $label = "Payment";
 
-    protected $fillable = ['id', 'name', 'amount', 'semester', 'card_id'];
+    protected $fillable = [
+        'id', 
+        'amount', 
+        'semester', 
+        'card_id'
+    ];
 
     public function user(){
-        return $this->hasOne('User');
+        return $this->belongsTo('App/User');
     }
 }

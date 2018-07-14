@@ -14,19 +14,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="dept of depts">
-                            <td>{{ dept.id }}</td>
-                            <td>{{ dept.name }}</td>
-                            <td>{{ dept.name }}</td>
-                            <td>{{ dept.name }}</td>
+                        <tr v-for="user of users" :key="user.id">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td v-if="user.reg_status == 1">Regesterd</td>
+                            <td v-else>Un Regestered</td>
+
+                            <td v-if="user.pay_status == 1">Payed
+                                <a @click="allowPay(0, user)">
+                                    <span class="text-warning">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                </a>
+                            </td>
+                            <td v-else>Un Payed
+                                <a @click="allowPay(1, user)">
+                                    <span class="text-warning">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-
-
 
 
     </div>
@@ -43,17 +55,19 @@
                 semester: null,
                 name: '',
                 dept_id: null,
-                successAdded: false
+                successAdded: false,
+                users: []
             }
         },
         created() {
-            this.getDepts();
+            this.getUsers();
             // this.getColleges();
         },
         methods: {
-            getColleges() {
-                axios.get('/api/college').then(response => {
-                    this.colleges = response.data.data;
+            getUsers() {
+                axios.get('/api/users').then(response => {
+                    console.log(response.data);
+                    this.users = response.data.data;
                 }).catch(function () {
                     return "Error";
                 });
@@ -80,6 +94,22 @@
                     }).catch(
                     (response) => console.log(response)
                 );
+            },
+            allowPay(state, user){
+                console.log(state);
+                console.log(user);
+                axios.post('/api/allow_pay', {
+                    pay_status: state,
+                    user_id: user.id
+                })
+                .then((response) => {
+                    this.users = []
+                    this.users = response.data.users
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             }
         },
 
