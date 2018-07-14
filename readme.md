@@ -21,6 +21,9 @@ php artisan key:generate
 npm install
 ```
 
+Start neo4j server
+set username = neo4j and password = root
+
 ```
 php artisan serve
 
