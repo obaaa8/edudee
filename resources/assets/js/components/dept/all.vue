@@ -1,40 +1,46 @@
 <template>
 
     <div>
-        <div class="alert alert-success" v-show="successAdded">
-            Department added Successfully
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-striped  table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="dept of depts">
+                            <td>{{ dept.id }}</td>
+                            <td>{{ dept.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <div class="alert alert-success" v-show="successAdded">
+                    Department added Successfully
+                </div>
+                <form @submit.prevent="store">
+                    <div class="form-group">
+                        <select v-model="college_id" class="form-control">
+                            <option value="">Select College</option>
+                            <option v-for="college of colleges" :value="college.id">{{ college.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="name">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-warning btn-block" type="submit">
+                            Add
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <form @submit.prevent="store">
-            <div class="form-group col-md-3">
-                <select v-model="college_id" class="form-control">
-                    <option value="">Select College</option>
-                    <option v-for="college of colleges" :value="college.id">{{ college.name }}</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <input type="text" class="form-control" v-model="name">
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-warning btn-block" type="submit">
-                    Add
-                </button>
-            </div>
-        </form>
 
-        <table class="table table-striped  table-bordered ">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="dept of depts">
-                    <td>{{ dept.id }}</td>
-                    <td>{{ dept.name }}</td>
-                </tr>
-            </tbody>
-        </table>
 
 
     </div>

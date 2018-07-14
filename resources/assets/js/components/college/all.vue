@@ -1,34 +1,42 @@
 <template>
 
     <div>
-        <div class="alert alert-success" v-show="successAdded">
-            College added Successfully
-        </div>
-        <form @submit.prevent="store">
-            <div class="form-group col-md-9">
-                <input type="text" class="form-control" v-model="name">
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-striped  table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="college of colleges">
+                            <td>{{ college.id }}</td>
+                            <td>{{ college.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-3">
-                <button class="btn btn-warning btn-block" type="submit">
-                    Add
-                </button>
+            <div class="col-md-4">
+                <div class="alert alert-success" v-show="successAdded">
+                    College added Successfully
+                </div>
+                <form @submit.prevent="store">
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="name">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-warning btn-block" type="submit">
+                            Add
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
 
-        <table class="table table-striped  table-bordered ">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="college of colleges">
-                    <td>{{ college.id }}</td>
-                    <td>{{ college.name }}</td>
-                </tr>
-            </tbody>
-        </table>
+        </div>
+
+
 
 
     </div>

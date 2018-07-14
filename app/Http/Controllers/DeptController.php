@@ -58,7 +58,7 @@ class DeptController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $college  ,
+            'data' => $dept  ,
         ],200);
     }
 
