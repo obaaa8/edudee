@@ -44401,6 +44401,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -44412,20 +44424,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             semester: null,
             name: '',
             dept_id: null,
-            successAdded: false
+            successAdded: false,
+            users: []
         };
     },
     created: function created() {
-        this.getDepts();
+        this.getUsers();
         // this.getColleges();
     },
 
     methods: {
-        getColleges: function getColleges() {
+        getUsers: function getUsers() {
             var _this = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/college').then(function (response) {
-                _this.colleges = response.data.data;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/users').then(function (response) {
+                console.log(response.data);
+                _this.users = response.data.data;
             }).catch(function () {
                 return "Error";
             });
@@ -44455,6 +44469,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (response) {
                 return console.log(response);
             });
+        },
+        allowPay: function allowPay(state, user) {
+            var _this4 = this;
+
+            console.log(state);
+            console.log(user);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/allow_pay', {
+                pay_status: state,
+                user_id: user.id
+            }).then(function (response) {
+                _this4.users = [];
+                _this4.users = response.data.users;
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 
@@ -44476,15 +44506,45 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.depts, function(dept) {
-              return _c("tr", [
-                _c("td", [_vm._v(_vm._s(dept.id))]),
+            _vm._l(_vm.users, function(user) {
+              return _c("tr", { key: user.id }, [
+                _c("td", [_vm._v(_vm._s(user.id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(dept.name))]),
+                _c("td", [_vm._v(_vm._s(user.name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(dept.name))]),
+                user.reg_status == 1
+                  ? _c("td", [_vm._v("Regesterd")])
+                  : _c("td", [_vm._v("Un Regestered")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(dept.name))])
+                user.pay_status == 1
+                  ? _c("td", [
+                      _vm._v("Payed\n                            "),
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.allowPay(0, user)
+                            }
+                          }
+                        },
+                        [_vm._m(1, true)]
+                      )
+                    ])
+                  : _c("td", [
+                      _vm._v("Un Payed\n                            "),
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.allowPay(1, user)
+                            }
+                          }
+                        },
+                        [_vm._m(2, true)]
+                      )
+                    ])
               ])
             })
           )
@@ -44508,6 +44568,22 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Payment")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-warning" }, [
+      _c("i", { staticClass: "fas fa-check-circle" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-warning" }, [
+      _c("i", { staticClass: "fas fa-check-circle" })
     ])
   }
 ]

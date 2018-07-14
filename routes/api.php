@@ -23,6 +23,9 @@ Route::resource('subject', 'SubjectController');
 Route::resource('payment', 'PaymentController');
 Route::resource('calendar', 'CalendarController');
 
+Route::get('users', 'UserController@users');
+Route::post('allow_pay', 'UserController@allowPay');
+
 Route::post('auth/login', 'AuthController@login');
 Route::group(['middleware' => 'jwt.auth'], function(){
     Route::get('auth/user', 'AuthController@user');

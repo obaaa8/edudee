@@ -18,7 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'id', 'name', 'email', 'password', 'phone', 
         'u_id', 'type', 'reg_status', 'n_id', 'dept_id', 
-        'semester', 'job_id', 'pay_statue'
+        'semester', 'job_id', 'pay_status'
     ];
 
     /**
@@ -29,4 +29,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function payments(){
+        return $this->hasMany('App/Payment');
+    }
+
+    public function department(){
+        return $this->belongsTo('App/Dept');
+    }
+
+    public function job(){
+        return $this->belongsTo('App/Job');
+    }
+
 }
