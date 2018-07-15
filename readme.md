@@ -1,6 +1,6 @@
 ## Edudee platform
 
-<a href="https://www.youtube.com/watch?v=t5AJwN5s-Xa">See Video DEMO HERE</a>
+<a href="https://youtu.be/4MurI8zGq7A">See Video DEMO HERE</a>
 <br/>
 To Demo Edudee run this commands:
 
